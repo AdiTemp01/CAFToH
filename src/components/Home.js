@@ -47,7 +47,7 @@ const  Home = () => {
             />
             <h1 className=" text-center text-gray-400 mt-8  text-4xl font-semibold  capitalize tracking-wider">Tower of Hanoi</h1>
             </div>
-            <div className="row-start-2 row-end-8">
+            <div className="row-start-6 row-end-10">
                 <MainFrame/>
             </div>
             <div className="flex justify-center items-center space-x-24">

@@ -1,7 +1,6 @@
 import React, { useEffect, useContext } from "react";
 import MainFrame from "./MainFrame";
 import { MainContext } from "../contexts/MainContext";
-import './assets/css/home.css';
 
 const Home = () => {
   const {

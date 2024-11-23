@@ -43,7 +43,7 @@ const  Home = () => {
             <img 
               src="https://social.nisb.in/Condensed---Black-Circle.c3214b41.png" 
               alt="Event Logo"
-              className="w-12 h-12"
+              className="row-start-2 w-12 h-12"
             />
             <h1 className=" text-center text-gray-400 mt-8  text-4xl font-semibold  capitalize tracking-wider">Tower of Hanoi</h1>
             </div>

@@ -15,38 +15,30 @@ const MainFrame = () => {
             return;
         }
 
-        const prevSrcElem = state[source.droppableId].disks[source.index - 1];
+        // Get elements from source and destination
         const srcElem = state[source.droppableId].disks[source.index];
-        const destElem = state[destination.droppableId].disks[destination.index];
+        const destElem = state[destination.droppableId].disks[0]; // Only the top of the destination peg
 
-        console.log('src:', source, '\ndest:', destination);
-        console.log('\n');
-        console.log('srcElem :', srcElem, '\ndestElem :', destElem);
+        // Validate the move
+        let movable = false;
 
-        let movable;
-
-        if (prevSrcElem) {
-            movable = false;
-        } else {
-            if (destElem) {
-                movable = srcElem.value < destElem.value;
-            } else {
-                if (state[destination.droppableId].disks.length) {
-                    movable = false;
-                } else {
-                    movable = true;
-                }
-            }
+        if (!destElem || srcElem.value < destElem.value) {
+            movable = true;
         }
 
+        // If move is valid, update the state
         if (movable) {
             const tmpDisk = state[source.droppableId].disks[source.index];
 
             setState((prev) => {
+                // Remove disk from source peg
                 prev[source.droppableId].disks.splice(source.index, 1);
-                prev[destination.droppableId].disks.splice(destination.index, 0, tmpDisk);
-                setMoves(moves + 1);
-                return prev;
+
+                // Add disk to the top of the destination peg
+                prev[destination.droppableId].disks.unshift(tmpDisk);
+
+                setMoves(moves + 1); // Increment the move counter
+                return { ...prev };
             });
         }
     };
@@ -54,9 +46,9 @@ const MainFrame = () => {
     return (
         <div className="md:grid grid-cols-3 gap-8">
             <DragDropContext onDragEnd={onDragEnd}>
-                {_.map(state, (data, key) => {
-                    return <Area data={data} dataKey={key} key={key} />;
-                })}
+                {_.map(state, (data, key) => (
+                    <Area data={data} dataKey={key} key={key} />
+                ))}
             </DragDropContext>
         </div>
     );

@@ -40,7 +40,7 @@ const Home = () => {
       state["end"].disks.length === numOfDisks
     )
       alert(
-        "Congrats, you have solved the Tower of Hanoi using the minimum number of steps. Increase the number of disks to make the puzzle more difficult"
+        "Congrats, 15 points gained!!!"
       );
   }, [moves]);
 
